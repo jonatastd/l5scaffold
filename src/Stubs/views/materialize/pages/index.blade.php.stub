@@ -1,0 +1,85 @@
+@extends('layout')
+
+@section('header')
+
+    <!--header start-->
+    <div id="breadcrumbs-wrapper">
+
+        @include("shared._page_search")
+
+        <div class="container">
+
+            <div href="{{ route('{{prefix}}{{models}}.create') }}" class="fixed-action-btn horizontal">
+                <a class="btn-floating btn-large red">
+                    <i class="large material-icons">add</i>
+                </a>
+            </div>
+
+            <div class="row">
+                <div class="col s12 m12 l12">
+                    <h5 class="breadcrumbs-title">{{Model}}</h5>
+                    <ol class="breadcrumbs">
+                        @include("shared._breadcrumbs")
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- header end-->
+
+@endsection
+
+@section('content')
+    <div class="row">
+        <div class="col-md-12">
+            @if(${{models}}->count())
+                <table class="striped-table bordered highlight responsive-table">
+                    <thead>
+                        <tr>
+                            <th class="text-center">#</th>
+                            {{table_fields_header}}
+                            <th class="text-right">Op??es</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach(${{models}} as ${{model}})
+                            <tr>
+                                <td class="text-center"><strong>{{${{model}}->id}}</strong></td>
+
+                                {{table_fields_content}}
+                                
+                                <td class="right-align">
+                                    <a class='btn-floating waves-effect blue darken-1' href="{{ route('{{prefix}}{{models}}.show', ${{model}}->id) }}">
+                                        <i class="material-icons">remove_red_eyes</i>
+                                    </a>&nbsp;
+                                    <a class='btn-floating waves-effect green' href="{{ route('{{prefix}}{{models}}.edit', ${{model}}->id) }}">
+                                        <i class="material-icons">mode_edit</i>
+                                    </a>&nbsp;
+                                    <form action="{{ route('{{prefix}}{{models}}.destroy', ${{model}}->id) }}" method="POST" style="display: inline;" data-confirm="Deseja realmente excluir?">
+                                        {{csrf_field()}}
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button type="submit" class="btn-floating waves-effect red accent-4"><i class="material-icons">delete</i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                @include("shared._pagination")
+
+            @else
+                <div id="card-alert" class="card deep-purple">
+                  <div class="card-content white-text">
+                    <p><i class="mdi-action-info-outline"></i> N?o h? resultados</p>
+                  </div>
+                  <button type="button" class="close white-text" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">?</span>
+                  </button>
+                </div>
+            @endif
+
+        </div>
+    </div>
+
+@endsection

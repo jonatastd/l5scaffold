@@ -1,0 +1,4 @@
+<div class="input-field col s12">
+	<label for="{{field.name}}-field">{{field.Name}}</label>
+	--{{field.name}}--
+</div>

@@ -1,0 +1,4 @@
+<div class="input-field col s12">
+	<input class="validate" type="text" name="{{field.name}}" id="{{field.name}}-field" value="{{ old('{{field.name}}', ${{model}}->{{field.name}} ) }}" />
+	<label for="{{field.name}}-field">{{field.Name}}</label>
+</div>

@@ -1,0 +1,10 @@
+<div class="col s4">
+    <b>{{field.Name}}</b>
+</div>
+
+<div class="col s8">
+	{{ ${{model}}->{{field.name}} }}
+</div>
+
+
+
