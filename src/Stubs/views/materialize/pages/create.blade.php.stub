@@ -7,8 +7,8 @@
         @include("shared._page_search")
 
         <div class="container">
-             <div href="{{ route('{{prefix}}{{models}}.index') }}" class="fixed-action-btn horizontal">
-                <a class="btn-floating btn-large red">
+             <div class="fixed-action-btn horizontal">
+                <a href="{{ route('{{prefix}}{{models}}.index') }}" class="btn-floating btn-large red">
                     <i class="large material-icons">arrow_back</i>
                 </a>
             </div>
